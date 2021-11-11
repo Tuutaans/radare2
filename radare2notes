@@ -1,0 +1,70 @@
+RADARE 2
+
+|3@$1( |_|$@G3$
+
+to enable debugger use: r2 -d filename
+and analyze the binary: r2 -A filename
+			or aaa after debugging the file and in r2 console.
+
+always enabe sandboxed mode for safety.
+to enable: r2 -e cfg.sandbox=true
+
+to list all functions: afl
+
+to disassemble function: pdf @ function_name (space doesn't matter)
+
+to get info about the file: i
+to show all the info of the file: iA
+
+to get every strings in the binary: izz ( helpful to get strings/text available in the binary and saves us from converting to ascii from other encoding)
+demo:
+[0x7f108f00b119]> izz
+[Strings]
+nth paddr      vaddr          len size section            type    string
+------------------------------------------------------------------------
+0   0x00000034 0x5616eca00034 4   10                      utf16le @8\t@
+1   0x00000238 0x5616eca00238 27  28   .interp            ascii   /lib64/ld-linux-x86-64.so.2
+9   0x000003cb 0x5616eca003cb 25  26   .dynstr            ascii   _ITM_registerTMCloneTable
+79  0x000019bf 0x5616eca000f9 8   9    .shstrtab          ascii   .comment
+80  0x00002148 0x5616eca00882 8   8                       ascii   goodjob\n (In our case the string is our flag)
+
+
+to print out current memory address: s
+to query related to navigate through memory: s?
+
+to run system command without any error or fail: !	e.g: !clear
+
+to see graph or enter visual mode: V, VV
+
+to set breakpoints: db memoryaddress (We set breakpoints to analyze what is going on the current memory addres, value it stores etc.)
+
+to continue execution of the program: dc
+
+to stepover one line or n line: ds
+for any query related to disassemble use: d?, ds?, dc?
+
+to print hexdump of memory address or functions: px switch
+for any query related to print use: p?
+
+to write a string to the current memory addres: w
+for any confusion related to write command use: w?
+
+
+
+
+|<3y T3r|\/|$
+
+demo:
+	pdf @ main
+pdf = print disassemblery function
+@ = THis symbol is used to specify something in an address in memory
+pdf is used toi disassemble and @ is used to denote main function address.
+
+
+
+
+
+
+FOr PRactice, Use below mention tryhackme room
+https://tryhackme.com/room/ccradare2
+https://tryhackme.com/room/introtox8664
